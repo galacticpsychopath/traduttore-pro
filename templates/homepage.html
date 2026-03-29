@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traduttore Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body class="home-body">
+
+    <!-- navigation -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="nav-logo">Traduttore Pro</span>
+            <span class="nav-tagline">Boutique Translation Management</span>
+        </div>
+        <span class="nav-badge">
+            <span class="badge-dot"></span>
+            Embassy Certified
+        </span>
+    </nav>
+
+    <!-- hero section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <p class="hero-eyebrow">Professional Translation Reimagined</p>
+            <h1 class="hero-title">Certified Translation<br><em>You Can Trust</em></h1>
+            <div class="hero-divider"></div>
+            <p class="hero-desc">A private, secure ecosystem for high-end Italian translation services. Experience the
+                future of document management with AI-powered support.</p>
+            <div class="hero-seal">
+                <span class="seal-dot"></span>
+                Embassy Certified Translator
+            </div>
+        </div>
+    </section>
+
+    <!-- language pairs -->
+    <section class="langs-section">
+        <div class="langs">
+            <span class="lang-pill">Arabic → Italian</span>
+            <span class="lang-pill">Italian → Arabic</span>
+            <span class="lang-pill">French → Italian</span>
+            <span class="lang-pill">English → Italian</span>
+        </div>
+    </section>
+
+    <!-- features grid -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Secure & Private</h3>
+                <p class="feature-desc">End-to-end encryption for all your sensitive documents</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <h3 class="feature-title">24/7 AI Assistant</h3>
+                <p class="feature-desc">Instant support powered by private Ollama technology</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Real-Time Tracking</h3>
+                <p class="feature-desc">Monitor your project progress at every stage</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Quality Assured</h3>
+                <p class="feature-desc">Professional translation with rigorous quality checks</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- request form -->
+    <section class="form-section">
+        <div class="form-card">
+            <div class="form-card-header">
+                <h2 class="form-card-title">Request Access</h2>
+                <p class="form-card-sub">Join our exclusive network of trusted clients</p>
+            </div>
+            <form id="requestForm">
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input class="form-input" type="text" id="name" placeholder="Your Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input class="form-input" type="tel" id="phone" placeholder="Your Phone Number" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" type="email" id="email" placeholder="Your Email Address" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Project Type</label>
+                    <select class="form-select" id="project_type" required>
+                        <option value="">Select project type</option>
+                        <option value="Legal Translation">Legal Translation</option>
+                        <option value="Technical Documentation">Technical Documentation</option>
+                        <option value="Medical / Pharmaceutical">Medical / Pharmaceutical</option>
+                        <option value="Business Documents">Business Documents</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Translation Type</label>
+                    <select class="form-select" id="language_pair" required>
+                        <option value="">Select translation type</option>
+                        <option value="Arabic → Italian">Arabic → Italian</option>
+                        <option value="Italian → Arabic">Italian → Arabic</option>
+                        <option value="French → Italian">French → Italian</option>
+                        <option value="English → Italian">English → Italian</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-textarea" id="message" placeholder="Describe what you need translated..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Request</button>
+                <div class="form-success" id="formSuccess">Your request has been submitted. We will contact you shortly.
+                </div>
+                <div class="form-error" id="formError">Something went wrong. Please try again.</div>
+            </form>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        <p class="footer-copy">© 2026 Traduttore Pro. Developed by Yousri Chaibi</p>
+        <p class="footer-sub">Secure · Private · Professional</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+</body>
+
+</html>
