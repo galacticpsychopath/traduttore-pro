@@ -83,6 +83,18 @@ def submit_request():
     with open('database.json', 'w') as f:
         json.dump(db, f, indent=4)
     return jsonify(msg='Request submitted successfully'), 201
+
+@app.route('/api/requests', methods=['GET'])
+@jwt_required()  # this protects the route — no token = no access
+def get_requests():
+    # read the database file
+    with open('database.json', 'r') as f:
+        db = json.load(f)
+    # return all requests to the admin dashboard
+    return jsonify(requests=db['requests']), 200
+
+
+
 # route to get all requests — only admin can access this using JWT token
 # route to approve a request — updates status, saves meeting date, sends email to client
 @app.route('/api/requests/<int:id>/approve', methods=['POST'])
@@ -144,15 +156,62 @@ Traduttore Pro
 
     return jsonify(msg='Request approved and email sent'), 200
 
-@app.route('/api/requests', methods=['GET'])
-@jwt_required()  # this protects the route — no token = no access
-def get_requests():
+# route to reject a request — updates status and sends rejection email to client
+@app.route('/api/requests/<int:id>/reject', methods=['POST'])
+@jwt_required()  # only admin can reject
+def reject_request(id):
     # read the database file
     with open('database.json', 'r') as f:
         db = json.load(f)
-    # return all requests to the admin dashboard
-    return jsonify(requests=db['requests']), 200
+
+    # find the request by id
+    req = next((r for r in db['requests'] if r['id'] == id), None)
+
+    # if request not found return error
+    if not req:
+        return jsonify(msg='Request not found'), 404
+
+    # update status to rejected
+    req['status'] = 'rejected'
+
+    # save updated database
+    with open('database.json', 'w') as f:
+        json.dump(db, f, indent=4)
+
+    # send rejection email to the client
+    try:
+        # write the email content
+        email_body = f"""
+Dear {req['name']},
+
+Thank you for contacting Traduttore Pro.
+
+Unfortunately, we are unable to process your translation request at this time.
+
+Please feel free to submit a new request or contact us for more information.
+
+Best regards,
+Traduttore Pro
+        """
+        # build the email message
+        msg = MIMEText(email_body)
+        msg['Subject'] = 'Update on Your Translation Request — Traduttore Pro'
+        msg['From']    = gmail_user
+        msg['To']      = req['email']
+
+        # connect to gmail and send
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(gmail_user, gmail_password)
+            server.sendmail(gmail_user, req['email'], msg.as_string())
+
+    except Exception as e:
+        # if email fails, still return success — request was saved
+        print(f'Email error: {e}')
+
+    return jsonify(msg='Request rejected and email sent'), 200
+
+
 
 # run the app in debug mode — shows errors clearly during development
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

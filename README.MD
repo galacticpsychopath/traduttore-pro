@@ -76,7 +76,7 @@ Click any tab to see only requests of that type.
 At the top of your dashboard you will always see:
 
 | Stat | Meaning |
-|---|---|
+|------|---------|
 | Total | All requests received |
 | Pending | Waiting for your response |
 | Approved | Confirmed with a meeting date |
