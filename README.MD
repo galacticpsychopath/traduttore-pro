@@ -119,8 +119,7 @@ When you are done, click **Sign Out** in the top right corner of the dashboard.
 
 Developed by **Yousri Chaibi**
 For technical support or questions, reach out directly.
-phone    = +216 21 985 721
-whatsapp = +216 21 985 721
+GitHub: https://github.com/galacticpsychopath
 ---
 
 *Traduttore Pro — Secure · Private · Professional*
